@@ -13,7 +13,7 @@ struct UpDown3App: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView().environmentObject(StringInfo(characters: "ABCDEF", curColor: .black))
         }
     }
 }
