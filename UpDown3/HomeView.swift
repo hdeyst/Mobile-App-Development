@@ -14,11 +14,11 @@ struct HomeView: View {
         NavigationStack {
             VStack {
                 Spacer()
-                UpDownView().environmentObject(navControl)
+                UpDownView(navControl: NavControl())
                 Spacer()
                 
             }
-        }.navigationDestination(isPresented: $navControl.showSettings) {SettingsView()}
+        }.navigationDestination(isPresented: $navControl.showSettings) {SettingsView(navControl: NavControl())}
                 .navigationBarBackButtonHidden()
                 .padding()
         
@@ -28,6 +28,5 @@ struct HomeView: View {
 #Preview {
     HomeView()
         .environmentObject(StringInfo(characters: "ABCDEF", curColor: .black))
-        .environmentObject(NavControl())
 }
 
