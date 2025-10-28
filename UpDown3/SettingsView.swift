@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var stringInfo: StringInfo
-    @ObservedObject var navControl: NavControl
+    @EnvironmentObject var navControl: NavControl
     @State private var tempTextField = " "
     
     var body: some View {
@@ -29,7 +29,7 @@ struct SettingsView: View {
             RoundedButtonView(buttonText: "Save", action: saveString).disabled(tempTextField == "")
             RoundedButtonView(buttonText: "Cancel", action: navControl.toggle)
         }.padding()
-        .navigationDestination(isPresented: $navControl.showSettings) {UpDownView(navControl: NavControl())}
+        .navigationDestination(isPresented: $navControl.showSettings) {HomeView()}
 
     }
     
@@ -40,5 +40,7 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView(navControl: NavControl()).environmentObject(StringInfo(characters: "ABCDEF", curColor: .black))
+    SettingsView()
+        .environmentObject(StringInfo(characters: "ABCDEF", curColor: .black))
+        .environmentObject(NavControl())
 }

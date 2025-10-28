@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UpDownView: View {
     @EnvironmentObject var stringInfo: StringInfo
-    @ObservedObject var navControl: NavControl
+    @EnvironmentObject var navControl: NavControl
     @State private var string = "ABCDEF"
     
     var body: some View {
@@ -36,8 +36,8 @@ struct UpDownView: View {
                 
             }
             Spacer()
+            RoundedButtonView(buttonText: "Settings", action: navControl.toggle)
         }
-        .padding()
     }
     
 }
@@ -49,6 +49,8 @@ extension StringProtocol {
 }
 
 #Preview {
-    UpDownView(navControl: NavControl()).environmentObject(StringInfo(characters: "ABCDEF", curColor: .black))
+    UpDownView()
+        .environmentObject(StringInfo(characters: "ABCDEF", curColor: .black))
+        .environmentObject(NavControl())
 }
 

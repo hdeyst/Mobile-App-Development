@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var navControl: NavControl
+    @StateObject var navControl = NavControl()
   
     var body: some View {
         NavigationStack {
             VStack {
                 Spacer()
-                UpDownView(navControl: NavControl())
-                RoundedButtonView(buttonText: "Settings", action: navControl.toggle)
+                UpDownView().environmentObject(navControl)
                 Spacer()
                 
-            }.navigationDestination(isPresented: $navControl.showSettings) {SettingsView(navControl: NavControl())}
+            }
+            .navigationDestination(isPresented: $navControl.showSettings) {SettingsView()}
                 .navigationBarBackButtonHidden()
                 .padding()
         }
@@ -26,6 +26,8 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(navControl: NavControl()).environmentObject(StringInfo(characters: "ABCDEF", curColor: .black))
+    HomeView()
+        .environmentObject(StringInfo(characters: "ABCDEF", curColor: .black))
+        .environmentObject(NavControl())
 }
 

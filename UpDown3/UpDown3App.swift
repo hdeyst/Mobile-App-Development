@@ -10,11 +10,10 @@ import SwiftUI
 @main
 struct UpDown3App: App {
     @EnvironmentObject var stringInfo: StringInfo
-    @StateObject var navControl = NavControl()
     
     var body: some Scene {
         WindowGroup {
-            HomeView(navControl: NavControl())
+            HomeView()
         }
     }
 }
