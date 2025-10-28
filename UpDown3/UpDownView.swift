@@ -13,31 +13,36 @@ struct UpDownView: View {
     @State private var string = "ABCDEF"
     
     var body: some View {
-        VStack {
-            Spacer()
-            Text("UpDown3").font(.system(size: 36))
-            Spacer()
-            
-            Text("\(stringInfo.curChar)").font(.system(size: 64))
-                .foregroundStyle(stringInfo.curColor)
-            Spacer()
-            HStack {
+        NavigationStack {
+            VStack {
+                Spacer()
+                Text("UpDown3").font(.system(size: 36))
                 Spacer()
                 
-                // move right (->) through string
-                Button(action: stringInfo.increment
-                ) {Text("\u{2191}").font(.system(size: 48))}
+                Text("\(stringInfo.curChar)").font(.system(size: 64))
+                    .foregroundStyle(stringInfo.curColor)
                 Spacer()
-                
-                // move left (<-) through string
-                Button(action: stringInfo.decrement
-                ) {Text("\u{2193}").font(.system(size: 48))}
+                HStack {
+                    Spacer()
+                    
+                    // move right (->) through string
+                    Button(action: stringInfo.increment
+                    ) {Text("\u{2191}").font(.system(size: 48))}
+                    Spacer()
+                    
+                    // move left (<-) through string
+                    Button(action: stringInfo.decrement
+                    ) {Text("\u{2193}").font(.system(size: 48))}
+                    Spacer()
+                    
+                }
                 Spacer()
-                
+                RoundedButtonView(buttonText: "Settings", action: navControl.toggle)
             }
-            Spacer()
-            RoundedButtonView(buttonText: "Settings", action: navControl.toggle)
-        }
+        }.navigationDestination(isPresented: $navControl.showSettings) {SettingsView()}
+            .navigationBarBackButtonHidden()
+            .padding()
+            .environmentObject(navControl)
     }
     
 }

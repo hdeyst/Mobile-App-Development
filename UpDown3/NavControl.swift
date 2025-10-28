@@ -12,6 +12,7 @@ class NavControl: ObservableObject {
     
     func toggle() {
         showSettings = !showSettings
+        print("toggling showsettings, value now is: \(showSettings)")
     }
     
     func goToSettings() {

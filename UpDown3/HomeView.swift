@@ -18,10 +18,10 @@ struct HomeView: View {
                 Spacer()
                 
             }
-            .navigationDestination(isPresented: $navControl.showSettings) {SettingsView()}
+        }.navigationDestination(isPresented: $navControl.showSettings) {SettingsView()}
                 .navigationBarBackButtonHidden()
                 .padding()
-        }
+        
     }
 }
 

@@ -29,8 +29,10 @@ struct SettingsView: View {
             RoundedButtonView(buttonText: "Save", action: saveString).disabled(tempTextField == "")
             RoundedButtonView(buttonText: "Cancel", action: navControl.toggle)
         }.padding()
-        .navigationDestination(isPresented: $navControl.showSettings) {HomeView()}
-
+            .navigationDestination(isPresented: $navControl.showSettings) {UpDownView()}
+            .navigationBarBackButtonHidden()
+            .padding()
+            .environmentObject(navControl)
     }
     
     func saveString() {
